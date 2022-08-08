@@ -7,6 +7,19 @@ from odoo import api, models
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    def _prepare_internal_svl_vals(self, product_id, quantity, unit_cost):
+        self.ensure_one()
+        vals = {
+            "product_id": product_id.id,
+            "value": unit_cost * quantity,
+            "unit_cost": unit_cost,
+            "quantity": quantity,
+        }
+        if product_id.cost_method in ("average", "fifo"):
+            vals["remaining_qty"] = quantity
+            vals["remaining_value"] = vals["value"]
+        return vals
+
     # @override
     @api.model
     def _get_valued_types(self):
@@ -45,8 +58,11 @@ class StockMove(models.Model):
             unit_cost = abs(move._get_price_unit())
             if move.product_id.cost_method == "standard":
                 unit_cost = move.product_id.standard_price
-            svl_vals = move.product_id._prepare_internal_svl_vals(
-                valued_quantity, unit_cost
+            # svl_vals = move.product_id._prepare_internal_svl_vals(
+            #     valued_quantity, unit_cost
+            # )
+            svl_vals = move._prepare_internal_svl_vals(
+                move.product_id, valued_quantity, unit_cost
             )
             svl_vals.update(move._prepare_common_svl_vals())
             svl_vals["description"] = move.picking_id.name
