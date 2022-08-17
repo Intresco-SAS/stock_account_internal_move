@@ -54,6 +54,14 @@ class StockMove(models.Model):
             svl_vals.update(move._prepare_common_svl_vals())
             svl_vals["description"] = move.picking_id.name
             svl_vals_list.append(svl_vals)
+
+            # For In
+            svl_vals = move.product_id._prepare_in_svl_vals(
+                valued_quantity, abs(svl_vals['unit_cost'])
+            )
+            svl_vals.update(move._prepare_common_svl_vals())
+            svl_vals["description"] = move.picking_id.name
+            svl_vals_list.append(svl_vals)
         return self.env["stock.valuation.layer"].sudo().create(svl_vals_list)
 
     # @override
