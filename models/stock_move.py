@@ -90,6 +90,7 @@ class StockMove(models.Model):
             stock_valuation = product_valuation_accounts.get("stock_valuation")
             stock_journal = product_valuation_accounts.get("stock_journal")
 
+            # For Internal Transfer
             if (
                 location_from.force_accounting_entries
                 and location_to.force_accounting_entries
@@ -103,6 +104,7 @@ class StockMove(models.Model):
                     svl_id,
                     cost,
                 )
+            # For Delivery Order Transfer
             elif location_from.force_accounting_entries:
                 self._create_account_move_line(
                     location_from.valuation_out_account_id.id,
@@ -113,9 +115,11 @@ class StockMove(models.Model):
                     svl_id,
                     cost,
                 )
+            # For Customer Return Transfer
             elif location_to.force_accounting_entries:
                 self._create_account_move_line(
-                    stock_valuation.id,
+                    # stock_valuation.id,
+                    location_to.valuation_out_account_id.id,
                     location_to.valuation_in_account_id.id,
                     stock_journal.id,
                     qty,
