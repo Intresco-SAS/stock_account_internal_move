@@ -120,7 +120,8 @@ class StockMove(models.Model):
                 self._create_account_move_line(
                     # stock_valuation.id,
                     location_to.valuation_out_account_id.id,
-                    location_to.valuation_in_account_id.id,
+                    self.product_id.categ_id.property_stock_account_output_categ_id.id,
+                    # location_to.valuation_in_account_id.id,
                     stock_journal.id,
                     qty,
                     description,
