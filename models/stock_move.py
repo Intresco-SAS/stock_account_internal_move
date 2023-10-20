@@ -105,8 +105,8 @@ class StockMove(models.Model):
                     stock_valuation,
                     stock_journal,
                     self.quantity_done,
-                    str(self.reference + " - " + self.name),
                     reference,
+                    False,
                     cost,
                 ))
             elif location_to.force_accounting_entries:
@@ -132,6 +132,8 @@ class StockMove(models.Model):
         return False
 
     def _get_accounting_data_for_valuation(self):
+        '''Si la ubicación de Entrada o de Salida (Internas) tiene marcadas la opción de 
+        Forzar los movimientos contables esta función se encargará de colocarle las cuentas establecidas'''
         self.ensure_one()
         (
             journal_id,
