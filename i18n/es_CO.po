@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_account_internal_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-21 14:28+0000\n"
+"PO-Revision-Date: 2023-10-21 09:30-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4\n"
+
+#. module: stock_account_internal_move
+#: model:ir.model.fields,field_description:stock_account_internal_move.field_stock_location__force_accounting_entries
+msgid "Force accounting entries?"
+msgstr "Forzar entrada contable?"
+
+#. module: stock_account_internal_move
+#: model:ir.model,name:stock_account_internal_move.model_stock_location
+msgid "Inventory Locations"
+msgstr "Ubicaciones de Inventario"
+
+#. module: stock_account_internal_move
+#: model:ir.model,name:stock_account_internal_move.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: stock_account_internal_move
+#: model:ir.model,name:stock_account_internal_move.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de Existencias"
+
+#. module: stock_account_internal_move
+#: code:addons/stock_account_internal_move/models/stock_location.py:0
+#, python-format
+msgid "You cannot force accounting entries on a non-internal location."
+msgstr "No puede forzar asientos contables en una ubicación no interna."
+
+#. module: stock_account_internal_move
+#: code:addons/stock_account_internal_move/models/stock_location.py:0
+#, python-format
+msgid ""
+"You must provide a valuation in/out account in order to force accounting "
+"entries."
+msgstr ""
+"Debe proporcionar una cuenta de Entrada/Salida de valoración para forzar "
+"los asientos contables."

@@ -7,13 +7,6 @@ from odoo import api, models
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    # @override
-    # @api.model
-    # def _get_valued_types(self):
-    #     res = super(StockMove, self)._get_valued_types()
-    #     res.append("internal")
-    #     return res
-
     def _get_internal_move_lines(self):
         self.ensure_one()
         res = self.env["stock.move.line"]
@@ -29,25 +22,6 @@ class StockMove(models.Model):
             ):
                 res |= move_line
         return res
-
-    # def _create_internal_svl(self):
-
-    #     svl_vals_list = []
-    #     for move in self:
-    #         # move = move.with_context(force_company=move.company_id.id)
-    #         move = move.with_company(move.company_id)
-    #         valued_move_lines = move._get_internal_move_lines()
-    #         valued_quantity = 0
-    #         for valued_move_line in valued_move_lines:
-    #             valued_quantity += valued_move_line.product_uom_id._compute_quantity(valued_move_line.qty_done, move.product_id.uom_id)
-    #         unit_cost = abs(move._get_price_unit())
-    #         if move.product_id.cost_method == "standard":
-    #             unit_cost = move.product_id.standard_price
-    #         svl_vals = move.product_id._prepare_internal_svl_vals(valued_quantity, move.company_id)
-    #         svl_vals.update(move._prepare_common_svl_vals())
-    #         svl_vals["description"] = move.picking_id.name
-    #         svl_vals_list.append(svl_vals)
-    #     return self.env["stock.valuation.layer"].sudo().create(svl_vals_list)
 
     def _action_done(self, cancel_backorder=False):
         """Call _account_entry_move for internal moves as well."""

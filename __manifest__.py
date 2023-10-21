@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2018 by Camptocamp
+# Copyright (C) 2023 by Intresco SAS
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 {
     "name": """Stock Account Internal Move""",
-    "summary": """Allows tracking moves between internal locations"""
-               """ via accounts.""",
+    "summary": """Allows tracking moves between internal locations via accounts
+    Note: it only support standart cost
+    This Module was migrated initially from OCA author from version 12 CE, due to was not migrate
+    we decide to adapt to this version""",
     "category": "Warehouse",
-    "version": "14.0.0.1",
-    "author": "Camptocamp SA,"
-              " Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/stock-logistics-warehouse",
+    "version": "15.0.0.1",
+    "author": "Intresco SAS",
+    "website": "https://github.com/Intresco-SAS/stock_account_internal_move",
     "license": "AGPL-3",
     "depends": ["stock_account"],
     "data": ["views/stock_location.xml"],
-    "development_status": "Production/Stable",
+    "development_status": "Alpha",
     "maintainers": [
-        "arkostyuk",
-        "max3903"
+        "NelsonV93",
     ],
 }
